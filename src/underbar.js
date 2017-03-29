@@ -306,16 +306,6 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
-      // var solutions = {};
-      // var tempKey = JSON.stringify(func);
-      // for(var key in solutions){
-      //   if(tempKey in solutions){
-      //     return solutions[tempKey];
-      //   } else {
-      //     solutions[tempKey] = func();
-      //   }
-      // }
-       console.log(solutions);
        var solutions = {};
        return function(){
         var tempKey = JSON.stringify(arguments);
