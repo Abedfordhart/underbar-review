@@ -315,14 +315,17 @@
       //     solutions[tempKey] = func();
       //   }
       // }
-      // console.log(solutions);
-      var solutions = {};
-      if(!(solutions[JSON.stringify(func)])) {
-        solutions[JSON.stringify(func)] = func;
-      } else {
-        return solutions[JSON.stringify(func)];
-      }
-      console.log(JSON.stringify(arguments));
+       console.log(solutions);
+       var solutions = {};
+       return function(){
+        var tempKey = JSON.stringify(arguments);
+        if(!(solutions[tempKey])){
+          solutions[tempKey] = func.apply(this, arguments);
+          return solutions[tempKey];
+        } else {
+          return solutions[tempKey];
+        }
+       }
   };
 
   // Delays a function for the given number of milliseconds, and then calls
@@ -332,6 +335,9 @@
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+    return setTimeout(function(){
+      return func();
+    }, wait);
   };
 
 
